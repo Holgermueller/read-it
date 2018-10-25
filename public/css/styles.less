@@ -1,3 +1,7 @@
+// Palette
+
+// Fonts
+@main-font: 'Charmonman', cursive;
 
 // Global
 .header,
@@ -15,21 +19,30 @@
     padding: 4px;
 }
 
+.header-elem {
+    display: inline;
+}
+
 .brand {
-    display: inline-flex;
     margin-left: 2%;
+}
+
+.app-name {
+    font-family: @main-font;
 }
 
 .log-in-form {
     float: right;
     margin-right: 2%;
+    padding-top: 1%;
 }
 
 // Footer
 .footer {
     bottom: 0;
+    margin-bottom: 0;
     text-align: center;
-    position: relative;
+    position: fixed;
 }
 
 // Log-in page
