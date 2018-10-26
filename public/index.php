@@ -10,17 +10,20 @@
 
 <?php include "templates/header.php"; ?>
 
-    <h2 class="join-in">Join!</h2>
+    <div class="registration-form-background">
 
-    <form action="post" class="registration">
-        <input type="text" value="First name">
-        <input type="text" value="Surname">
-        <input type="text" value="Email">
-        <input type="text" value="Password">
-        <input type="text" value="Verify password">
-        <input type="submit" value="Join!" class="join">
+        <h2 class="join-in">Join!</h2>
 
-    </form>
+        <form action="post" class="registration">
+            <input type="text" placeholder="First name" class="form-control">
+            <input type="text" placeholder="Surname" class="form-control">
+            <input type="text" placeholder="Email" class="form-control">
+            <input type="text" placeholder="Password" class="form-control">
+            <input type="text" placeholder="Verify password" class="form-control">
+            <input type="submit" value="Join!" class="join form-control">
+        </form>
+
+    </div>
 
 <?php include "templates/footer.php"; ?>
     
