@@ -8,7 +8,17 @@
 </head>
 <body>
 
-<?php include "templates/header.php"; ?>
+<?php
+require "../seed/config.php";
+
+/**
+ * Grab infor from registration form
+ * and feed it to user database
+ */
+
+?>
+
+<?php include "templates/log-in-header.php"; ?>
 
     <div class="registration-form-background">
 
