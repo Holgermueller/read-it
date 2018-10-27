@@ -13,6 +13,14 @@
 </head>
 <body>
 
+    <?php
+
+    /**
+     * Get log in info from form and take user to profile page.
+     */
+
+    ?>
+
     <div class="header">
         <div class="brand">
             <h1 class="app-name header-elem">
