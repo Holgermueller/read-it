@@ -8,7 +8,7 @@ CREATE TABLE users (
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    userpassword VARCHAR(50) PASSWORD,
+    userpassword VARCHAR(50),
     datejoined datetime DEFAULT CURRENT_TIMESTAMP
 );
 
