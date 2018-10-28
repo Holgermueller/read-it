@@ -15,6 +15,7 @@ if(isset($_POST['submit'])) {
         $new_user = array (
             "firstname" => $_POST['firstname'],
             "lastname" => $_POST['lastname'],
+            "username" => $_POST['username'],
             "email" => $_POST['email'],
             "userpassword" => $_POST['userpassword']
         );
@@ -45,6 +46,7 @@ if(isset($_POST['submit'])) {
     <div class="registration-form-background">
 
         <h2 class="join-in">Join!</h2>
+        <p> Please fill out the fields below.</p>
 
             <?php if (isset($_POST['submit']) && statement) : ?>
         <blockquote><?php echo escape($_POST['firstname']); ?> successfully added! </blockquote>
@@ -53,6 +55,7 @@ if(isset($_POST['submit'])) {
         <form method="post" class="registration">
             <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control">
             <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control">
+            <input type="text" name="username" id="username" placeholder="Username" class="form-control">
             <input type="text" name="email" id="email" placeholder="Email" class="form-control">
             <input type="text" name="userpassword" id="userpassword" placeholder="Password" class="form-control">
             <input type="submit" name="submit" value="Join!" class="join form-control">
