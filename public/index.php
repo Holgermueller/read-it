@@ -1,9 +1,9 @@
 <?php
-require "../seed/config.php";
+require_once "../seed/config.php";
 require "../seed/common.php";
 
 /**
- * Grab infor from registration form
+ * Grab info from registration form
  * and feed it to user database
  * then take user to profile page
  */

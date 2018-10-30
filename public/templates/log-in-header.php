@@ -29,6 +29,7 @@
             </h1> 
 
             <form method="post" class="log-in-form header-elem">
+            Log-in: 
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username">
                 <label for="password">Password</label>

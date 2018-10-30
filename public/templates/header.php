@@ -23,8 +23,10 @@
                 <p class="tag-line">
                     Yes, I've read some good books lately!
                 </p>
+                <a href="logout.php" class="logout">Log out</a>
     </div>
 
+    
 
 </div>
     

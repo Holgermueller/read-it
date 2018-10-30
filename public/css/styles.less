@@ -21,6 +21,16 @@ input[type=text] {
     margin: 0 2px 0 2px;
 }
 
+a,
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #3399ff;
+}
+
 // Log In Header
 .log-in-header {
     position: fixed;
@@ -51,11 +61,18 @@ input[type=text] {
 //Header
 .header {
     .log-in-header;
+    display: inline;
 }
 
 .tag-line {
     float: right;
-    margin: 2% 5% 0 0;
+    margin: 2% 45% 0 0;
+}
+
+.logout {
+    float: right;
+    margin: 0 5% 0 0;
+    top: 0;
 }
 
 // Footer
