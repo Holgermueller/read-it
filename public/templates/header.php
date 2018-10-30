@@ -19,7 +19,10 @@
                 <h1 class="app-name header-elem">
                 <i class="fas fa-book"></i>
                     Read It!
-                </h1> 
+                </h1>
+                <p class="tag-line">
+                    Yes, I've read some good books lately!
+                </p>
     </div>
 
 

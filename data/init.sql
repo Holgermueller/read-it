@@ -9,7 +9,9 @@ CREATE TABLE users (
     lastname VARCHAR(30) NOT NULL,
     username VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    userpassword VARCHAR(50),
+    userpassword VARCHAR(50) NOT NULL,
+    location VARCHAR(50),
+    bio TEXT,
     datejoined datetime DEFAULT CURRENT_TIMESTAMP
 );
 
