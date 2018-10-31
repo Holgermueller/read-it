@@ -36,7 +36,6 @@
                 <input type="text" name="password" id="password">
                 <input type="submit" name="login" value="Log In" class="log-in">
             </form>
-
         </div>
     </div>
     

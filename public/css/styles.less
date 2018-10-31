@@ -1,4 +1,6 @@
 // Palette
+@primary-border-color: #e6ac00;
+@primary-background-color: #ffff80;
 
 // Fonts
 @main-font: 'Charmonman', cursive;
@@ -37,7 +39,7 @@ a:hover {
     margin-top: 0;
     top: 0;
     padding: 4px;
-    background-image: linear-gradient(#e6ac00, #ffff80);
+    background-image: linear-gradient(@primary-border-color, @primary-background-color);
 }
 
 .header-elem {
@@ -61,18 +63,10 @@ a:hover {
 //Header
 .header {
     .log-in-header;
-    display: inline;
-}
-
-.tag-line {
-    float: right;
-    margin: 2% 45% 0 0;
 }
 
 .logout {
-    float: right;
-    margin: 0 5% 0 0;
-    top: 0;
+    .log-in-form;
 }
 
 // Footer
@@ -81,17 +75,17 @@ a:hover {
     margin-bottom: 0;
     text-align: center;
     position: fixed;
-    background-image: linear-gradient(#ffff80, #e6ac00);
+    background-image: linear-gradient(@primary-background-color, @primary-border-color);
 }
 
 // Log-in page
 .registration-form-background {
     margin: 14% 0 0 33%;
     padding: 3px 0 3px 0;
-    background-color: #ffff80;
+    background-color: @primary-background-color;
     width: 35%;
     text-align: center;
-    border: 2px solid #e6ac00;
+    border: 2px solid @primary-border-color;
     border-radius: 15px;
 }
 
@@ -126,9 +120,9 @@ a:hover {
     margin: 10% 15% 0 0;
     width: 30%;
     float: right;
-    border: 2px solid #e6ac00;
+    border: 2px solid @primary-border-color;
     border-radius: 15px;
-    background-color: #ffff80;
+    background-color: @primary-background-color;
     padding: 3px 0 3px 0;
     text-align: center;
 }
