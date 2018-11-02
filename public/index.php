@@ -2,6 +2,9 @@
 require_once "../seed/config.php";
 require "../seed/common.php";
 
+session_start();
+$error="";
+
 /**
  * Grab info from registration form
  * and feed it to user database
@@ -56,8 +59,8 @@ if(isset($_POST['submit'])) {
             <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control">
             <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control">
             <input type="text" name="username" id="username" placeholder="Username" class="form-control">
-            <input type="text" name="email" id="email" placeholder="Email" class="form-control">
-            <input type="text" name="userpassword" id="userpassword" placeholder="Password" class="form-control">
+            <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+            <input type="password" name="userpassword" id="userpassword" placeholder="Password" class="form-control">
             <input type="submit" name="submit" value="Join!" class="join form-control">
         </form>
 
