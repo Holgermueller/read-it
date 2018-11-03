@@ -37,6 +37,7 @@
                 <input type="text" name="username" id="username">
                 <label for="password">Password</label>
                 <input type="text" name="password" id="password">
+                <input type="text" name="check" value="" style="display:none;" />
                 <input type="submit" name="login" value="Log In" class="log-in">
             </form>
         </div>

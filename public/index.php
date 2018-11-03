@@ -31,7 +31,6 @@ if(isset($_POST['submit'])) {
      * Make sure user fills out 
      * entire registration form.
      */
-
     foreach($new_user AS $new_user_field) {
         if(empty($_POST[$new_user_field])) {
             $error = 'You need to fill out all of the required fields!';
@@ -91,12 +90,13 @@ if(isset($_POST['submit'])) {
 
         <form method="post" class="registration">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-            <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control">
-            <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control">
-            <input type="text" name="username" id="user-name" placeholder="Username" class="form-control">
-            <input type="email" name="email" id="email" placeholder="Email" class="form-control">
-            <input type="password" name="password" id="userpassword" placeholder="Password" class="form-control">
-            <input type="submit" name="submit" value="Join!" class="join form-control">
+            <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control" />
+            <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control" />
+            <input type="text" name="username" id="user-name" placeholder="Username" class="form-control" />
+            <input type="email" name="email" id="email" placeholder="Email" class="form-control" />
+            <input type="password" name="password" id="userpassword" placeholder="Password" class="form-control" />
+            <input type="text" name="check" value="" style="display:none;" />
+            <input type="submit" name="submit" value="Join!" class="join form-control" />
         </form>
 
     </div>
