@@ -13,6 +13,8 @@ $error="";
 
 if(isset($_POST['submit'])) {
 
+    if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
+
     try {
         $connection = new PDO($dsn, $username, $password, $options);
         $new_user = array (
@@ -62,14 +64,15 @@ if(isset($_POST['submit'])) {
         $statement = $connection->prepare($sql);
         $statement->execute($new_user);
     } catch(PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
+        die($sql . "<br>" . $error->getMessage());
     }
 
     /**
      * redirect user to profile page
      */
-
     header("Location: profile.php");
+    $statement = null;
+    $connection = null;
 }
 ?>
 
@@ -87,6 +90,7 @@ if(isset($_POST['submit'])) {
     <span class="error"><?php echo $error; ?></span>
 
         <form method="post" class="registration">
+        <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
             <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control">
             <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control">
             <input type="text" name="username" id="user-name" placeholder="Username" class="form-control">
