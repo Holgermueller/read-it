@@ -8,7 +8,7 @@ $error="";
 /**
  * Grab info from registration form
  * and feed it to user database
- * then take user to profile page
+ * then take user to profile page.
  */
 
 if(isset($_POST['submit'])) {
@@ -20,8 +20,37 @@ if(isset($_POST['submit'])) {
             "lastname" => $_POST['lastname'],
             "username" => $_POST['username'],
             "email" => $_POST['email'],
-            "userpassword" => $_POST['userpassword']
+            "password" => $_POST['password']
         );
+
+    $error=false;
+
+    /**
+     * Make sure user fills out 
+     * entire registration form.
+     */
+
+    foreach($new_user AS $new_user_field) {
+        if(empty($_POST[$new_user_field])) {
+            $error = 'You need to fill out all of the required fields!';
+        }
+    }
+
+        /**
+         * Hash user's password.
+         */
+
+        /**
+         * Generate activation code
+         */
+
+        /**
+         * Does username already exist?
+         */
+
+        /**
+         * Does email already exist?
+         */
 
         $sql = sprintf(
             "INSERT INTO %s (%s) values (%s)",
@@ -55,12 +84,14 @@ if(isset($_POST['submit'])) {
         <blockquote><?php echo escape($_POST['firstname']); ?> successfully added! </blockquote>
 <?php endif; ?>
 
+    <span class="error"><?php echo $error; ?></span>
+
         <form method="post" class="registration">
             <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control">
             <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control">
-            <input type="text" name="username" id="username" placeholder="Username" class="form-control">
+            <input type="text" name="username" id="user-name" placeholder="Username" class="form-control">
             <input type="email" name="email" id="email" placeholder="Email" class="form-control">
-            <input type="password" name="userpassword" id="userpassword" placeholder="Password" class="form-control">
+            <input type="password" name="password" id="userpassword" placeholder="Password" class="form-control">
             <input type="submit" name="submit" value="Join!" class="join form-control">
         </form>
 
