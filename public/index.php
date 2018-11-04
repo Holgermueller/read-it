@@ -3,7 +3,34 @@ require_once "../seed/config.php";
 require "../seed/common.php";
 
 session_start();
+
+/**
+ * For errors.
+ */
 $error="";
+
+/**
+ * Variables for handling form data.
+ */
+$firstname = $lastname = $username = $email = $password = "";
+
+/**
+ * Test data from form.
+ */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstname = test_input($_POST["firstname"]);
+    $lastname = test_input($_POST["lastname"]);
+    $username = test_input($_POST["username"]);
+    $email = test_input($_POST["email"]);
+    $password = test_input($_POST["password"]);
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 /**
  * Grab info from registration form
@@ -31,8 +58,8 @@ if(isset($_POST['submit'])) {
      * Make sure user fills out 
      * entire registration form.
      */
-    foreach($new_user AS $new_user_field) {
-        if(empty($_POST[$new_user_field])) {
+    foreach($_POST AS $new_user_field) {
+        if(trim($new_user_field) == "" || empty($_POST[$new_user_field])) {
             $error = 'You need to fill out all of the required fields!';
         }
     }
@@ -88,7 +115,7 @@ if(isset($_POST['submit'])) {
 
     <span class="error"><?php echo $error; ?></span>
 
-        <form method="post" class="registration">
+        <form method="post" class="registration" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
             <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control" />
             <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control" />
