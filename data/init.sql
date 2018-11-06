@@ -10,7 +10,7 @@ CREATE TABLE users (
     username VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL,
     activation_code VARCHAR(255),
-    password VARCHAR(255) NOT NULL,
+    userpassword VARCHAR(255) NOT NULL,
     active BOOLEAN DEFAULT false,
     location VARCHAR(50),
     bio TEXT,
