@@ -1,5 +1,5 @@
 <?php
-require "../seed/config.php";
+require_once "../seed/config.php";
 require "../seed/common.php";
 
 session_start();
@@ -12,7 +12,7 @@ $error="";
 /**
  * Variables for handling form data.
  */
-$firstname = $lastname = $username = $email = $password = "";
+$firstname = $lastname = $username = $email = $userpassword = "";
 
 /**
  * Test data from form.
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])) {
     if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
 
     try {
-        $connection = new PDO($dsn, $username, $password, $options);
+        $connection = new PDO($dsn, $pdousername, $password, $options);
 
             $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
             $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
@@ -44,22 +44,15 @@ if(isset($_POST['submit'])) {
             $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
             $userpassword = !empty($_POST['userpassword']) ? trim($_POST['userpassword']) : null;
 
-
-            $error=false;
-
         /**
          * Make sure user fills out 
          * entire registration form.
          */
 
         /**
-         * Generate activation code
-         */
-
-        /**
          * Does username already exist?
          */
-        $sql = "SELECT COUNT (username) AS num FROM users WHERE username = :username";
+        $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':username', $username);
         $statement->execute();
@@ -73,7 +66,7 @@ if(isset($_POST['submit'])) {
         /**
          * Does email already exist?
          */
-        $sql = "SELECT COUNT (email) AS num FROM users WHERE email = :email";
+        $sql = "SELECT COUNT(email) AS num FROM users WHERE email = :email";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':email', $email);
         $statement->execute();
@@ -90,10 +83,15 @@ if(isset($_POST['submit'])) {
         $passwordHash = password_hash($userpassword, PASSWORD_BCRYPT, array("cost" => 12));
 
         /**
+         * Generate activation code
+         */
+
+
+        /**
          * Send all user info to database.
          */
 
-        $sql = "INSERT INTO users (firstname, lastname, username, email, :userpassword) VALUES 
+        $sql = "INSERT INTO users (firstname, lastname, username, email, userpassword) VALUES 
             (:firstname, :lastname, :username, :email, :userpassword)";
         $statement = $connection->prepare($sql);
 
@@ -104,7 +102,7 @@ if(isset($_POST['submit'])) {
         $statement->bindValue(':lastname', $lastname);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':email', $email);
-        $statement->bindValue(':userpassword', $userpassword);
+        $statement->bindValue(':userpassword', $passwordHash);
 
         /**
          * Execute.

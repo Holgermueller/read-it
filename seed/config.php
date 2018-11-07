@@ -5,7 +5,7 @@
  */
 
 $host = "127.0.0.1";
-$username = "root";
+$pdousername = "root";
 $password = "Kafka#678";
 $dbname = "readit";
 $dsn = "mysql:host=$host;dbname=$dbname";
