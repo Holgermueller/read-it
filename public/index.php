@@ -7,23 +7,12 @@ session_start();
 /**
  * For errors.
  */
-$error="";
+$error = array();
 
 /**
  * Variables for handling form data.
  */
 $firstname = $lastname = $username = $email = $userpassword = "";
-
-/**
- * Test data from form.
- */
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $firstname = test_input($_POST["firstname"]);
-//     $lastname = test_input($_POST["lastname"]);
-//     $username = test_input($_POST["username"]);
-//     $email = test_input($_POST["email"]);
-//     $password = test_input($_POST["password"]);
-// }
 
 /**
  * Grab info from registration form
@@ -48,6 +37,25 @@ if(isset($_POST['submit'])) {
          * Make sure user fills out 
          * entire registration form.
          */
+        if(strlen(trim($firstname)) === 0) {
+            $error[] = "You must provide your first name.";
+        }
+
+        if(strlen(trim($lastname)) === 0) {
+            $error[] = "You must provide your last name.";
+        }
+
+        if(strlen(trim($username)) === 0) {
+            $error[] = "You must provide a username.";
+        }
+
+        if(strlen(trim($email)) === 0) {
+            $error[] = "You must provide an email.";
+        }
+
+        if(strlen(trim($userpassword)) === 0) {
+            $error[] = "You must provide a password.";
+        }
 
         /**
          * Does username already exist?
@@ -60,7 +68,14 @@ if(isset($_POST['submit'])) {
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($row['num'] > 0) {
-            die('That username already exists.');
+            $error[] = 'That username already exists.';
+        }
+
+        /**
+         * Make sure email is valid.
+         */
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error[] = 'That is not a valid email address.';
         }
 
         /**
@@ -74,7 +89,7 @@ if(isset($_POST['submit'])) {
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($row['num'] > 0) {
-            die('That email already exists.');
+            $error[] = 'That email already exists.';
         }
 
         /**
@@ -133,7 +148,14 @@ if(isset($_POST['submit'])) {
         <blockquote><?php echo escape($_POST['firstname']); ?> successfully added! </blockquote>
 <?php endif; ?>
 
-    <span class="error"><?php echo $error; ?></span>
+    <?php
+    if(!empty($error)) {
+        echo '<h2>Error(s)!<?h2>';
+        foreach($error as $errormessage) {
+            echo $errormessage . '<br>';
+        }
+    }
+    ?>
 
         <form method="post" class="registration" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
