@@ -130,7 +130,7 @@ if(isset($_POST['submit'])) {
     /**
      * redirect user to profile page
      */
-    header("Location: profile.php");
+    header("Location: activate.php");
     $statement = null;
     $connection = null;
 }
