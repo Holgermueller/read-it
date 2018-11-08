@@ -7,7 +7,7 @@ session_start();
 /**
  * For errors.
  */
-$error = array();
+$errors = array();
 
 /**
  * Variables for handling form data.
@@ -38,23 +38,23 @@ if(isset($_POST['submit'])) {
          * entire registration form.
          */
         if(strlen(trim($firstname)) === 0) {
-            $error[] = "You must provide your first name.";
+            $errors[] = "You must provide your first name.";
         }
 
         if(strlen(trim($lastname)) === 0) {
-            $error[] = "You must provide your last name.";
+            $errors[] = "You must provide your last name.";
         }
 
         if(strlen(trim($username)) === 0) {
-            $error[] = "You must provide a username.";
+            $errors[] = "You must provide a username.";
         }
 
         if(strlen(trim($email)) === 0) {
-            $error[] = "You must provide an email.";
+            $errors[] = "You must provide an email.";
         }
 
         if(strlen(trim($userpassword)) === 0) {
-            $error[] = "You must provide a password.";
+            $errors[] = "You must provide a password.";
         }
 
         /**
@@ -68,14 +68,14 @@ if(isset($_POST['submit'])) {
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($row['num'] > 0) {
-            $error[] = 'That username already exists.';
+            $errors[] = 'That username already exists.';
         }
 
         /**
          * Make sure email is valid.
          */
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error[] = 'That is not a valid email address.';
+            $errors[] = 'That is not a valid email address.';
         }
 
         /**
@@ -89,7 +89,7 @@ if(isset($_POST['submit'])) {
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($row['num'] > 0) {
-            $error[] = 'That email already exists.';
+            $errors[] = 'That email already exists.';
         }
 
         /**
@@ -105,7 +105,6 @@ if(isset($_POST['submit'])) {
         /**
          * Send all user info to database.
          */
-
         $sql = "INSERT INTO users (firstname, lastname, username, email, userpassword) VALUES 
             (:firstname, :lastname, :username, :email, :userpassword)";
         $statement = $connection->prepare($sql);
@@ -125,7 +124,7 @@ if(isset($_POST['submit'])) {
         $result = $statement->execute();
 
     } catch(PDOException $error) {
-        die($sql . "<br>" . $error->getMessage());
+        echo $sql . "<br>" . $error->getMessage();
     }
 
     /**
@@ -144,14 +143,10 @@ if(isset($_POST['submit'])) {
         <h2 class="join-in">Join!</h2>
         <p> Please fill out the fields below.</p>
 
-            <?php if (isset($_POST['submit']) && statement) : ?>
-        <blockquote><?php echo escape($_POST['firstname']); ?> successfully added! </blockquote>
-<?php endif; ?>
-
     <?php
     if(!empty($error)) {
-        echo '<h2>Error(s)!<?h2>';
-        foreach($error as $errormessage) {
+        echo '<h2>Error(s)!<?h2>' . '<br>';
+        foreach($errors as $errormessage) {
             echo $errormessage . '<br>';
         }
     }
