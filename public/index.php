@@ -12,7 +12,7 @@ $errors = array();
 /**
  * Variables for handling form data.
  */
-$firstname = $lastname = $username = $email = $userpassword = "";
+$firstname = $lastname = $username = $email = $userpassword = $confirmpassword = "";
 
 /**
  * Grab info from registration form
@@ -32,6 +32,7 @@ if(isset($_POST['submit'])) {
             $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
             $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
             $userpassword = !empty($_POST['userpassword']) ? trim($_POST['userpassword']) : null;
+            $confirmpassword = !empty($_POST['confirmpassword']) ? trim($_POST['confirmpassword']) : null;
 
         /**
          * Make sure user fills out 
@@ -55,6 +56,10 @@ if(isset($_POST['submit'])) {
 
         if(strlen(trim($userpassword)) === 0) {
             $errors[] = "You must provide a password.";
+        }
+
+        if(strlen(trim($confirmpassword)) === 0) {
+            $errors[] = "You must confirm your password.";
         }
 
         /**
@@ -93,12 +98,22 @@ if(isset($_POST['submit'])) {
         }
 
         /**
-         * Hash user's password.
+         * Have user confirm password.
          */
-        $passwordHash = password_hash($userpassword, PASSWORD_BCRYPT, array("cost" => 12));
+        $okedpassword = '';
+        if($userpassword !== $confirmpassword){
+            $errors[] = 'The passwords must match.';
+        } else {
+            $okedpassword = $userpassword;
+        }
 
         /**
-         * Generate activation code
+         * Hash user's password.
+         */
+        $passwordHash = password_hash($okedpassword, PASSWORD_BCRYPT, array("cost" => 12));
+
+        /**
+         * Generate activation code.
          */
 
 
@@ -154,11 +169,12 @@ if(isset($_POST['submit'])) {
 
         <form method="post" class="registration" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-            <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control" />
-            <input type="text" name="lastname" id="lastname" placeholder="Surname" class="form-control" />
-            <input type="text" name="username" id="user-name" placeholder="Username" class="form-control" />
+            <input type="text" name="firstname" id="firstName" placeholder="First name" class="form-control" />
+            <input type="text" name="lastname" id="lastName" placeholder="Surname" class="form-control" />
+            <input type="text" name="username" id="userName" placeholder="Username" class="form-control" />
             <input type="email" name="email" id="email" placeholder="Email" class="form-control" />
-            <input type="password" name="userpassword" id="userpassword" placeholder="Password" class="form-control" />
+            <input type="password" name="userpassword" id="userPassword" placeholder="Password" class="form-control" />
+            <input type="password" name="confirmpassword" id="confirmPassword" placeholder="Confirm Password" class="form-control" />
             <input type="text" name="check" value="" style="display:none;" />
             <input type="submit" name="submit" value="Join!" class="join form-control" />
         </form>
