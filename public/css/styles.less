@@ -1,6 +1,7 @@
 // Palette
 @primary-border-color: #e6ac00;
 @primary-background-color: #ffff80;
+@hover: #3399ff;
 
 // Fonts
 @main-font: 'Charmonman', cursive;
@@ -37,7 +38,7 @@ a:visited {
 }
 
 a:hover {
-    color: #3399ff;
+    color: @hover;
 }
 
 // Log In Header
@@ -112,16 +113,24 @@ a:hover {
 }
 
 .join:hover {
-    background-color: #3399ff;
+    background-color: @hover;
 }
 
-// Welcome page
+// Activation page
 .welcome {
     .registration-form-background;
 }
 
 .activation-instructions {
     padding-bottom: 8px;
+}
+
+.activate:hover {
+    background-color: @hover;
+}
+
+.activate {
+    padding-bottom: 3%;
 }
 
 // Profile page

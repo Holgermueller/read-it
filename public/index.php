@@ -118,6 +118,22 @@ if(isset($_POST['submit'])) {
         $activation_code = bin2hex(openssl_random_pseudo_bytes(16));
 
         /**
+         * Send activation code to user.
+         */
+        $verifiacation_link = 'https://www.read-it.com/activation/activate.php?code=' . $activation_code;
+            $htmlStr = '';
+            $htmlStr .= 'Hello, ' . $email . '<br /><br />';
+            $htmlStr .= 'Here is your activation code: ' . $activation_code;
+            $htmlStr .= 'You are welcome.';
+            $htmlStr .= 'Hope you have fun on our site.';
+            $subject_line = 'Verification linke | Read-It | Registration';
+            $recipient_email = $email;
+
+        $body = $htmlStr;
+        
+        mail($recipient_email, $subject_line, $body);
+
+        /**
          * Send all user info to database.
          */
         $sql = "INSERT INTO users (firstname, lastname, username, email, activation_code, userpassword) VALUES 
