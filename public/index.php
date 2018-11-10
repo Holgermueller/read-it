@@ -115,13 +115,13 @@ if(isset($_POST['submit'])) {
         /**
          * Generate activation code.
          */
-
+        $activation_code = bin2hex(openssl_random_pseudo_bytes(16));
 
         /**
          * Send all user info to database.
          */
-        $sql = "INSERT INTO users (firstname, lastname, username, email, userpassword) VALUES 
-            (:firstname, :lastname, :username, :email, :userpassword)";
+        $sql = "INSERT INTO users (firstname, lastname, username, email, activation_code, userpassword) VALUES 
+            (:firstname, :lastname, :username, :email, :activation_code, :userpassword)";
         $statement = $connection->prepare($sql);
 
         /**
@@ -131,6 +131,7 @@ if(isset($_POST['submit'])) {
         $statement->bindValue(':lastname', $lastname);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':email', $email);
+        $statement->bindValue(':activation_code', $activation_code);
         $statement->bindValue(':userpassword', $passwordHash);
 
         /**
