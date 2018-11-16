@@ -12,7 +12,7 @@ $errors = array();
  */
 
 if(isset($_POST['login'])) {
-    if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
+    // if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
 
     try {
         $connection = new PDO($dsn, $pdousername, $password, $options);
@@ -30,18 +30,28 @@ if(isset($_POST['login'])) {
 
         if($user === false) {
             $errors[] = "No such user.";
+        } else {
+            $passwordIsValid = password_verify($attemptedPassword, $user['userpassword']);
+
+            if($passwordIsValid) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['logged_in'] = time();
+
+                /**
+                 * redirect user to profile page
+                 */
+                // header("Location: activate.php");
+                $statement = null;
+                $connection = null;
+            } else {
+                $errors[] = 'Invalid username / password combination.';
+            }
         }
 
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 
-    /**
-     * redirect user to profile page
-     */
-    header("Location: activate.php");
-    $statement = null;
-    $connection = null;
 }
 
 ?>
