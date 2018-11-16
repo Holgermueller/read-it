@@ -168,7 +168,7 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
-<?php include "templates/log-in-header.php"; ?>
+<?php include "templates/welcome-header.php"; ?>
 
     <div class="registration-form-background">
 

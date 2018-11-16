@@ -16,13 +16,6 @@ body {
     color: red;
 }
 
-.log-in-header,
-.footer {
-    width: 100%;
-    padding: 4px;
-    left: 0;
-}
-
 input[type=text],
 input[type=email],
 input[type=password],
@@ -41,11 +34,13 @@ a:hover {
     color: @hover;
 }
 
-// Log In Header
-.log-in-header {
+// General Header Styles
+.header {
     position: fixed;
     margin-top: 0;
     top: 0;
+    left: 0;
+    width: 100%;
     padding: 4px;
     background-image: linear-gradient(@primary-border-color, @primary-background-color);
 }
@@ -62,24 +57,21 @@ a:hover {
     font-family: @main-font;
 }
 
-.log-in-form {
+// Welcome header
+.login {
     float: right;
-    margin-right: 2%;
-    padding-top: 2%;
 }
 
 //Header
-.header {
-    .log-in-header;
-}
-
 .logout {
     .log-in-form;
 }
 
 // Footer
 .footer {
+    width: 100%;
     bottom: 0;
+    left: 0;
     margin-bottom: 0;
     text-align: center;
     position: fixed;
@@ -131,6 +123,11 @@ a:hover {
 
 .activate {
     padding-bottom: 3%;
+}
+
+// Log in page
+.log-in-form {
+    .registration-form-background;
 }
 
 // Profile page
