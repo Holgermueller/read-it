@@ -18,6 +18,13 @@ echo "You are logged in!";
 <div class="user-profile">
     <h2>Welcome 'name goes here'</h2>
     <p>What have you been reading lately?</p>
+
+
+    <div class="update-links">
+    <a href="update-profile.php">Edit Acct.</a>
+    |
+    <a href="delete-account.php">Delete Acct.</a>
+    </div>
 </div>
 
 <div class="book-list">

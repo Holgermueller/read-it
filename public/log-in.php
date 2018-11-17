@@ -32,7 +32,7 @@ if(isset($_POST['login'])) {
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($user === false) {
-            $errors[] = "No such user.";
+            $errors[] = 'No such user.';
         } else {
             $passwordIsValid = password_verify($attemptedPassword, $user['userpassword']);
 
@@ -61,16 +61,16 @@ if(isset($_POST['login'])) {
 
     <div class="log-in">
 
-    <h2>Log in:</h2>
+        <h2>Log in:</h2>
 
-    <?php
-    if(!empty($error)) {
+        <?php
+        if(!empty($error)) {
         echo '<h2>Error(s)!<?h2>' . '<br>';
         foreach($errors as $errormessage) {
             echo $errormessage . '<br>';
-        }
-    }
-    ?>
+            }
+            }
+        ?>
 
         <form method="post" class="log-in-form">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
