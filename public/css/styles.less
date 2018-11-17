@@ -58,13 +58,14 @@ a:hover {
 }
 
 // Welcome header
-.login {
+.direct-to-log-in {
     float: right;
+    margin: 2% 4% 0 0;
 }
 
 //Header
 .logout {
-    .log-in-form;
+    .direct-to-log-in;
 }
 
 // Footer
@@ -78,7 +79,7 @@ a:hover {
     background-image: linear-gradient(@primary-background-color, @primary-border-color);
 }
 
-// Log-in page
+// Registration page
 .registration-form-background {
     margin: 14% 0 0 33%;
     padding: 3px 0 3px 0;
@@ -126,8 +127,16 @@ a:hover {
 }
 
 // Log in page
-.log-in-form {
+.log-in {
     .registration-form-background;
+}
+
+.log-in-form {
+    .registration;
+}
+
+.log-in-submit:hover {
+    background-color: @hover;
 }
 
 // Profile page

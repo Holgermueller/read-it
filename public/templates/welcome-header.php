@@ -20,7 +20,10 @@
         <i class="fas fa-book"></i>
             Read It!
         </h1>
-        <a href="log-in.php" class="login">Log In!</a> 
+        <div class="direct-to-log-in">
+        <a href="log-in.php">Log In!</a> 
+        </div>
+
     </div>
 </div>
     
