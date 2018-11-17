@@ -7,7 +7,7 @@ session_start();
 /**
  * Variables:
  */
-$username = $attemptedPassword = "";
+$username = $attemptedPassword  = "";
 $errors = array();
 
 /**
@@ -15,7 +15,7 @@ $errors = array();
  */
 
 if(isset($_POST['login'])) {
-    // if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
+    if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
 
     try {
         $connection = new PDO($dsn, $pdousername, $password, $options);
@@ -43,9 +43,9 @@ if(isset($_POST['login'])) {
                 /**
                  * redirect user to profile page
                  */
-                // header("Location: activate.php");
-                $statement = null;
-                $connection = null;
+                header("Location: profile.php");
+                exit;
+                
             } else {
                 $errors[] = 'Invalid username / password combination.';
             }
@@ -54,9 +54,7 @@ if(isset($_POST['login'])) {
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
-
 }
-
 ?>
 
 <?php include "templates/general-header.php"; ?>
@@ -65,14 +63,14 @@ if(isset($_POST['login'])) {
 
     <h2>Log in:</h2>
 
-        <?php
-        if(!empty($error)) {
+    <?php
+    if(!empty($error)) {
         echo '<h2>Error(s)!<?h2>' . '<br>';
         foreach($errors as $errormessage) {
-        echo $errormessage . '<br>';
-            }
+            echo $errormessage . '<br>';
         }
-        ?>
+    }
+    ?>
 
         <form method="post" class="log-in-form">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">

@@ -1,3 +1,18 @@
+<?php
+require_once "../seed/config.php";
+require "../seed/common.php";
+
+session_start();
+
+if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
+    header('Location: log-in.php');
+    exit;
+}
+
+echo "You are logged in!";
+
+?>
+
 <?php include "templates/header.php"; ?>
 
 <div class="user-profile">
