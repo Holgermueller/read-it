@@ -6,9 +6,26 @@ session_start();
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: log-in.php');
-    exit;
+
+    // try {
+    //     $connection = new PDO($dsn, $pdousername, $password, $options);
+
+    //     $statement = $connection->prepare($sql);
+    //     $statement->bindValue(':username', $username);
+    //     $statement->execute();
+
+    //     $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+
+    // } catch(PDOException $error) {
+    //     echo $sql . "<br>" . $error->getMessage();
+    // }
 }
 
+$loggedInUser = $_SESSION['user']['firstname'];
+
+echo $loggedInUser;
 echo "You are logged in!";
 
 ?>
@@ -16,7 +33,11 @@ echo "You are logged in!";
 <?php include "templates/header.php"; ?>
 
 <div class="user-profile">
-    <h2>Welcome 'name goes here'</h2>
+    <h2>Welcome, <?php 
+    if(isset($_SESSION['user_id'])) : ?>
+    <?php echo escape($_SESSION['firstname']); ?>
+    <?php endif; ?>
+    </h2>
     <p>What have you been reading lately?</p>
 
 
