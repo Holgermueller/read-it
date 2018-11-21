@@ -9,9 +9,20 @@ if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     exit;
 }
 
+$id = $_SESSION['user'];
+
 $connection = new PDO($dsn, $pdousername, $password, $options);
 
-$user = ($_SESSION[''])
+$sql = "SELECT * FROM users WHERE username = :username";
+$statement = $connection->prepare($sql);
+
+$statement->execute();
+
+$fetch = $sql->fetch();
+
+echo $fetch['firstname'];
+
+echo "You are logged in.";
 
 ?>
 
@@ -19,7 +30,7 @@ $user = ($_SESSION[''])
 
 <div class="user-profile">
     <h2>Welcome, <?php 
-    echo $username; ?>
+    echo $_SESSION['username']->username; ?>
     </h2>
     <p>What have you been reading lately?</p>
 
