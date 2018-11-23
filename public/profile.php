@@ -1,28 +1,21 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once "../seed/config.php";
 require "../seed/common.php";
-
-session_start();
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: log-in.php');
     exit;
 }
 
-$id = $_SESSION['user'];
+        $connection = new PDO($dsn, $pdousername, $password, $options);
+        $sql = $connection->prepare("SELECT * FROM users WHERE username = :username");
+        $statement->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR, 30);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-$connection = new PDO($dsn, $pdousername, $password, $options);
-
-$sql = "SELECT * FROM users WHERE username = :username";
-$statement = $connection->prepare($sql);
-
-$statement->execute();
-
-$fetch = $sql->fetch();
-
-echo $fetch['firstname'];
-
-echo "You are logged in.";
+    echo "hello" . $result['username'];
 
 ?>
 
@@ -30,7 +23,7 @@ echo "You are logged in.";
 
 <div class="user-profile">
     <h2>Welcome, <?php 
-    echo $_SESSION['username']->username; ?>
+    echo $_SESSION['username']; ?>
     </h2>
     <p>What have you been reading lately?</p>
 
