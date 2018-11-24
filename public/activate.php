@@ -4,8 +4,6 @@ ini_set('display_errors', 1);
 require_once "../seed/config.php";
 require "../seed/common.php";
 
-session_start();
-
 /**
  * To check activation code against.
  */

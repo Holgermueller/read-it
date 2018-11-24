@@ -3,28 +3,27 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once "../seed/config.php";
 require "../seed/common.php";
+require "functions.php";
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: log-in.php');
     exit;
 }
 
-        $connection = new PDO($dsn, $pdousername, $password, $options);
-        $statement = $connection->prepare("SELECT * FROM users WHERE username = :username");
-        $statement->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR, 30);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+if(isset($_SESSION['user_id'])){
+    $connection = new PDO($dsn, $pdousername, $password, $options);
+    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
+    $result = $statement->setFetchMode(PDO::FETCH_ASSOC);
 
-    echo "hello" . $result['username'];
+    echo "hello" . $_SESSION['user_id'];
+}
 
 ?>
 
 <?php include "templates/header.php"; ?>
 
 <div class="user-profile">
-    <h2>Welcome, <?php 
-    echo $_SESSION['username']; ?>
-    </h2>
+    <h2>Welcome, <?php echo $result['firstname'];?> </h2>
     <p>What have you been reading lately?</p>
 
 
