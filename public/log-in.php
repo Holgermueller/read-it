@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once "../seed/config.php";
-require "../seed/common.php";
+require_once "../seed/common.php";
 
 /**
  * Variables:
@@ -75,7 +75,7 @@ if(isset($_POST['login'])) {
         <form method="post" class="log-in-form">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
             <input type="text" name="username" id="username" placeholder="Username" class="form-control" />
-            <input type="text" name="userpassword" id="password" placeholder="Password" class="form-control" />
+            <input type="password" name="userpassword" id="password" placeholder="Password" class="form-control" />
             <input type="text" name="check" value="" style="display:none;" />
             <input type="submit" name="login" value="Log In" class="log-in-submit form-control" />
         </form>

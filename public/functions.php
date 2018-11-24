@@ -3,27 +3,30 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 ini_set('display_errors', 'TRUE');
 require_once "../seed/config.php";
+require_once "../seed/common.php";
 
 function getUsersData($id) {
     $dataArray = array();
-    $query = mysql_query("SELECT * FROM `users` WHERE `id`=" .$id);
-    while($row = mysql_fetch_assoc($query)) {
-        $dataArray['id'] = $r['id'];
-        $dataArray['firstname'] = $r['firstname'];
-        $dataArray['lastname'] = $r['lastname'];
-        $dataArray['username'] = $r['username'];
-        $dataArray['email'] = $r['email'];
-        $dataArray['location'] = $r['location'];
-        $dataArray['bio'] = $r['bio'];
-        $dataArray['datejoined'] = $r['datejoined'];
+    $connection = new PDO($dsn, $pdousername, $password, $options);
+    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
+    while($result = $statement->setFetchMode(PDO::FETCH_ASSOC)) {
+        $dataArray['id'] = $result['id'];
+        $dataArray['firstname'] = $result['firstname'];
+        $dataArray['lastname'] = $result['lastname'];
+        $dataArray['username'] = $result['username'];
+        $dataArray['email'] = $result['email'];
+        $dataArray['location'] = $result['location'];
+        $dataArray['bio'] = $result['bio'];
+        $dataArray['datejoined'] = $result['datejoined'];
     }
     return $array;
 }
 
 function getId($username) {
-    $query =  mysql_query("SELECT `id` FROM `users` WHERE `username`='".$username."'");
-        while($row = mysql_fetch_assoc($query)) {
-            return $r['id'];
+    $connection = new PDO($dsn, $pdousername, $password, $options);
+    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
+        while($result = $statement->setFetchMode(PDO::FETCH_ASSOC)) {
+            return $result['id'];
     }
 }
 

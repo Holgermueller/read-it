@@ -2,8 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once "../seed/config.php";
-require "../seed/common.php";
-require "functions.php";
+require_once "../seed/common.php";
+require_once "functions.php";
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     header('Location: log-in.php');
@@ -11,11 +11,8 @@ if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 }
 
 if(isset($_SESSION['user_id'])){
-    $connection = new PDO($dsn, $pdousername, $password, $options);
-    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
-    $result = $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-    echo "hello" . $_SESSION['user_id'];
+    $usersData = getUsersData(getId($_SESSION['user_id']));
+    echo $usersData['firstname'];
 }
 
 ?>
@@ -23,7 +20,7 @@ if(isset($_SESSION['user_id'])){
 <?php include "templates/header.php"; ?>
 
 <div class="user-profile">
-    <h2>Welcome, <?php echo $result['firstname'];?> </h2>
+    <h2>Welcome, <?php echo $_SESSION['user_id'];?> </h2>
     <p>What have you been reading lately?</p>
 
 

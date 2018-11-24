@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once "../seed/config.php";
-require "../seed/common.php";
+require_once "../seed/common.php";
 
 /**
  * For errors.
