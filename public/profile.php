@@ -10,7 +10,7 @@ if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
 }
 
         $connection = new PDO($dsn, $pdousername, $password, $options);
-        $sql = $connection->prepare("SELECT * FROM users WHERE username = :username");
+        $statement = $connection->prepare("SELECT * FROM users WHERE username = :username");
         $statement->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR, 30);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
