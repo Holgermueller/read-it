@@ -5,10 +5,11 @@ ini_set('display_errors', 'TRUE');
 require_once "../seed/config.php";
 require_once "../seed/common.php";
 
+$connection = new PDO($dsn, $pdousername, $password, $options);
+$statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
+
 function getUsersData($id) {
     $dataArray = array();
-    $connection = new PDO($dsn, $pdousername, $password, $options);
-    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
     while($result = $statement->setFetchMode(PDO::FETCH_ASSOC)) {
         $dataArray['id'] = $result['id'];
         $dataArray['firstname'] = $result['firstname'];
@@ -23,8 +24,6 @@ function getUsersData($id) {
 }
 
 function getId($username) {
-    $connection = new PDO($dsn, $pdousername, $password, $options);
-    $statement = $connection->prepare("SELECT * FROM users WHERE username = " . $_SESSION['user_id']);
         while($result = $statement->setFetchMode(PDO::FETCH_ASSOC)) {
             return $result['id'];
     }

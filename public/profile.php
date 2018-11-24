@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require_once "../seed/config.php";
-require_once "../seed/common.php";
+//require_once "../seed/config.php";
+//require_once "../seed/common.php";
 require_once "functions.php";
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
@@ -23,11 +23,10 @@ if(isset($_SESSION['user_id'])){
     <h2>Welcome, <?php echo $_SESSION['user_id'];?> </h2>
     <p>What have you been reading lately?</p>
 
-
     <div class="update-links">
-    <a href="update-profile.php">Edit Acct.</a>
-    |
-    <a href="delete-account.php">Delete Acct.</a>
+        <a href="update-profile.php">Edit Acct.</a>
+        |
+        <a href="delete-account.php">Delete Acct.</a>
     </div>
 </div>
 
