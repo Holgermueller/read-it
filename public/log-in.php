@@ -8,7 +8,7 @@ require_once "../seed/common.php";
  * Variables:
  */
 $username = $attemptedPassword  = "";
-$errors = array();
+$loginErrors = array();
 
 /**
  * Get log in info from form and take user to profile page.
@@ -32,7 +32,7 @@ if(isset($_POST['login'])) {
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($user === false) {
-            $errors[] = 'No such user.';
+            $loginErrors[] = 'No such user.';
         } else {
             $passwordIsValid = password_verify($attemptedPassword, $user['userpassword']);
 
@@ -47,7 +47,10 @@ if(isset($_POST['login'])) {
                 exit;
                 
             } else {
-                $errors[] = 'Invalid username / password combination.';
+                /**
+                 * Alert user of error.
+                 */
+                $loginErrors[] = 'Invalid username / password combination.';
             }
         }
 
@@ -66,8 +69,8 @@ if(isset($_POST['login'])) {
         <?php
         if(!empty($error)) {
         echo '<h2>Error(s)!<?h2>' . '<br>';
-        foreach($errors as $errormessage) {
-            echo $errormessage . '<br>';
+        foreach($loginErrors as $loginErrormessage) {
+            echo $loginErrormessage . '<br>';
             }
             }
         ?>
@@ -79,6 +82,8 @@ if(isset($_POST['login'])) {
             <input type="text" name="check" value="" style="display:none;" />
             <input type="submit" name="login" value="Log In" class="log-in-submit form-control" />
         </form>
+
+        <p>Fill out all fields.</p>
 
     </div>
 

@@ -173,7 +173,7 @@ if(isset($_POST['submit'])) {
     <div class="registration-form-background">
 
         <h2 class="join-in">Join!</h2>
-        <p> Please fill out the fields below.</p>
+        <p> Please fill out all the fields below.</p>
 
     <?php
     if(!empty($error)) {
