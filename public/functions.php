@@ -6,7 +6,7 @@ require_once "../seed/config.php";
 require_once "../seed/common.php";
 
 $connection = new PDO($dsn, $pdousername, $password, $options);
-$sql = "SELECT * FROM `users` WHERE `id` = " . $_SESSION['user_id'];
+$sql = "SELECT * FROM users WHERE id = " . $_SESSION['user_id'];
 $statement = $connection->prepare($sql);
 $statement->bindValue($_SESSION['user_id'], $id);
 $statement->execute();

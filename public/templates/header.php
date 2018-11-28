@@ -14,15 +14,43 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="brand general-header">
+<header class="header">
+    <div class="brand welcome-header">
+        <a href="">
         <h1 class="app-name header-elem">
         <i class="fas fa-book"></i>
             Read It!
         </h1>
-        <a href="logout.php" class="logout">Log out</a> 
-    </div>
+        </a>
 </div>
+
+        <div class="login-logout-forms">
+
+            <?php
+            if (isset($_SESSION['user_id'])) {
+                echo '        
+                <form action="../includes/login.inc.php" method="post">
+                <input name="csrf" type="hidden" value="<?php echo escape($_SESSION["csrf"]); ?>
+                <input type="text" name="username" id="username" placeholder="Username" class="form-control" />
+                <input type="password" name="userpassword" id="password" placeholder="Password" class="form-control" />
+                <input type="text" name="check" value="" style="display:none;" />
+                <button type="submit" name="login-submit" class="login-logout">
+                Log In! 
+                </button>
+            </form>';
+            } else {
+                echo '        
+                <form action="includes.logout.inc.php" method="post">
+                <button type="submit" name="logout-submit" class="login-logout">
+                    Log out
+                </button>
+            </form>';
+            }
+
+            ?>
+        </div>
+
+</header>
     
 </body>
 </html>

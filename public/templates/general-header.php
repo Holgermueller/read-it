@@ -13,14 +13,16 @@
 </head>
 <body>
 
-    <div class="header">
+<!--This is the header for the login page -->
+
+    <header class="header">
         <div class="brand">
             <h1 class="app-name header-elem">
             <i class="fas fa-book"></i>
                 Read It!
             </h1> 
         </div>
-    </div>
+</header>
     
 </body>
 </html>
