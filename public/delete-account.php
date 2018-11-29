@@ -25,9 +25,11 @@ if(isset($_POST['nodelete'])) {
   <h2>Are you sure you want to delete your account?</h2>
 
   <div class="deletion-choices">
+    <form action="includes/delete.inc.php">
     <input type="submit" name="yesdelete" value="Yes" class="yes-no" />
     |
     <input type="submit" name="nodelete" value="No" class="yes-no" />
+    </form>
   </div>
 
 </div>
