@@ -27,7 +27,7 @@
         <div class="login-logout-forms">
 
             <?php
-            if (isset($_SESSION['user_id'])) {
+            if (!isset($_SESSION['user_id'])) {
                 echo '        
                 <form action="../includes/login.inc.php" method="post">
                 <input name="csrf" type="hidden" value="<?php echo escape($_SESSION["csrf"]); ?>

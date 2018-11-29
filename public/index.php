@@ -1,5 +1,4 @@
 <?php
-
 require_once "../seed/config.php";
 require_once "../seed/common.php";
 
@@ -13,9 +12,9 @@ require_once "../seed/common.php";
         <h2 class="join-in">Join!</h2>
         <p> Please fill out all the fields below.</p>
 
-        <div class="errors">
+        <!-- <div class="errors">
         Errors go here.
-        </div>
+        </div> -->
         <br>
             <form action="includes/register.inc.php" method="post" class="registration">
             <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
@@ -27,6 +26,7 @@ require_once "../seed/common.php";
             <input type="password" name="confirmpassword" id="confirmPassword" placeholder="Confirm Password" class="form-control" />
             <input type="text" name="check" value="" style="display:none;" />
             <input type="submit" name="submit" value="Join!" class="join form-control" />
+            <br>
             </form>
         </section>
         </div>
