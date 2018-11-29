@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require_once "../seed/config.php";
-require_once "../seed/common.php";
+require_once "../../seed/config.php";
+require_once "../../seed/common.php";
 
 /**
  * For errors.
@@ -162,7 +162,7 @@ if(isset($_POST['submit'])) {
     /**
      * redirect user to profile page
      */
-    header("Location: activate.php");
+    header("Location: ../activate.php");
     $statement = null;
     $connection = null;
 }
