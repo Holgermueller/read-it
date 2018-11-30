@@ -1,18 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-/**
- * function to delete a user account
- */
-
-
- /**
-  * function to return user to his or her profile
-  */
-if(isset($_POST['nodelete'])) {
-  header('Location: profile.php');
-}
+require_once "../seed/config.php";
+require_once "../seed/common.php";
 
 ?>
 
