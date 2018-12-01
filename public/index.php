@@ -1,6 +1,7 @@
 <?php
-require_once "../seed/config.php";
-require_once "../seed/common.php";
+require_once "/Users/holgermueller/Coding_projects/read-it/seed/config.php";
+require_once "/Users/holgermueller/Coding_projects/read-it/seed/common.php";
+include "../includes/register.inc.php";
 
 ?>
 
@@ -12,11 +13,11 @@ require_once "../seed/common.php";
         <h2 class="join-in">Join!</h2>
         <p> Please fill out all the fields below.</p>
 
-        <!-- <div class="errors">
-        Errors go here.
-        </div> -->
+        <div class="errors">
+        <?php  echo $_SESSION[$errors];?>
+        </div>
         <br>
-            <form action="includes/register.inc.php" method="post" class="registration">
+            <form action="../includes/register.inc.php" method="POST" class="registration">
             <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
             <input type="text" name="firstname" id="firstName" placeholder="First name" class="form-control" />
             <input type="text" name="lastname" id="lastName" placeholder="Surname" class="form-control" />
