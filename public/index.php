@@ -25,7 +25,7 @@ require_once "../seed/common.php";
             <input type="password" name="userpassword" id="userPassword" placeholder="Password" class="form-control" />
             <input type="password" name="confirmpassword" id="confirmPassword" placeholder="Confirm Password" class="form-control" />
             <input type="text" name="check" value="" style="display:none;" />
-            <input type="submit" name="submit" value="Join!" class="join form-control" />
+            <input type="submit" name="join" value="Join!" class="join form-control" />
             <br>
             </form>
         </section>

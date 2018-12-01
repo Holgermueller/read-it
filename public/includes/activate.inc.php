@@ -14,7 +14,7 @@ $activation_code_checked = "";
  */
 $errors = array();
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['join'])) {
 
     if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
 

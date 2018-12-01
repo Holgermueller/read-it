@@ -4,62 +4,29 @@ ini_set('display_errors', 1);
 require_once "../../seed/config.php";
 require_once "../../seed/common.php";
 
-/**
- * For errors.
- */
-$errors = array();
-
-/**
- * Variables for handling form data.
- */
-$firstname = $lastname = $username = $email = $userpassword = $confirmpassword = "";
-
-/**
- * Grab info from registration form
- * and feed it to user database
- * then take user to profile page.
- */
-
 if(isset($_POST['submit'])) {
+
+    $errors = array();
 
     if (!hash_equals($_SESSION['csrf'], $_POST['csrf']))die();
 
     try {
         $connection = new PDO($dsn, $pdousername, $password, $options);
 
-            $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
-            $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
-            $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-            $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-            $userpassword = !empty($_POST['userpassword']) ? trim($_POST['userpassword']) : null;
-            $confirmpassword = !empty($_POST['confirmpassword']) ? trim($_POST['confirmpassword']) : null;
+            $firstname = trim($_POST['firstname']);
+            $lastname = trim($_POST['lastname']);
+            $username = trim($_POST['username']);
+            $email = trim($_POST['email']);
+            $userpassword = trim($_POST['userpassword']);
+            $confirmpassword = trim($_POST['confirmpassword']);
 
         /**
          * Make sure user fills out 
          * entire registration form.
          */
-        if(strlen(trim($firstname)) === 0) {
-            $errors[] = "You must provide your first name.";
-        }
-
-        if(strlen(trim($lastname)) === 0) {
-            $errors[] = "You must provide your last name.";
-        }
-
-        if(strlen(trim($username)) === 0) {
-            $errors[] = "You must provide a username.";
-        }
-
-        if(strlen(trim($email)) === 0) {
-            $errors[] = "You must provide an email.";
-        }
-
-        if(strlen(trim($userpassword)) === 0) {
-            $errors[] = "You must provide a password.";
-        }
-
-        if(strlen(trim($confirmpassword)) === 0) {
-            $errors[] = "You must confirm your password.";
+        if(empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($userpassword) || empty($confirmpassword)) {
+            header("Location: ../index.php?error=emptyfields&");
+            $errors[] = "You must fill out all of the fields.";
         }
 
         /**
