@@ -1,7 +1,6 @@
 <?php
 require_once "/Users/holgermueller/Coding_projects/read-it/seed/config.php";
 require_once "/Users/holgermueller/Coding_projects/read-it/seed/common.php";
-include "../includes/register.inc.php";
 
 ?>
 
@@ -17,7 +16,7 @@ include "../includes/register.inc.php";
         <?php  echo $_SESSION[$errors];?>
         </div>
         <br>
-            <form action="../includes/register.inc.php" method="POST" class="registration">
+            <form action="activate.php" method="POST" class="registration">
             <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
             <input type="text" name="firstname" id="firstName" placeholder="First name" class="form-control" />
             <input type="text" name="lastname" id="lastName" placeholder="Surname" class="form-control" />
