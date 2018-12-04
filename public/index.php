@@ -73,7 +73,7 @@ if(isset($_POST['join'])) {
 
 
         $sql = "INSERT INTO users (firstname, lastname, username, email, activation_code, userpassword) VALUES 
-            :firstname, :lastname, :username, :email, :activation_code, :userpassword)";
+            (:firstname, :lastname, :username, :email, :activation_code, :userpassword)";
         $statement = $connection->prepare($sql);
 
         $statement->bindValue(':firstname', $firstname);
