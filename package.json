@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Holgermueller/read-it#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.12",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-connect-php": "^1.0.3",
